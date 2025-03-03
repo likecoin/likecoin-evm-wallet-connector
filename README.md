@@ -56,6 +56,9 @@ export default {
   ...
 }
 ```
+[Nuxt 2 Example](/examples/nuxt2/)
+
+
 ```js
 // Nuxt 3
 // nuxt.config.ts
