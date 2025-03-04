@@ -1,4 +1,4 @@
-import React, { createRef } from "react";
+import * as React from "react";
 import { createRoot, type Root } from "react-dom/client";
 import { ethers } from "ethers";
 import { Magic } from "magic-sdk";
@@ -275,7 +275,7 @@ export class LikeCoinEVMWalletConnector {
     rootEl.setAttribute("id", ROOT_ELEMENT_ID);
     document.body.appendChild(rootEl);
     this._renderingRoot = createRoot(rootEl);
-    this._uiRef = createRef<LikeCoinEVMWalletConnectorUI>();
+    this._uiRef = React.createRef<LikeCoinEVMWalletConnectorUI>();
 
     this._renderingRoot.render(
       <React.StrictMode>

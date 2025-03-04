@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import * as React from "react";
 import {
   Description,
   DialogTitle,
@@ -20,7 +20,7 @@ export interface ConnectPortalDialogProps {
 export const ConnectPortalDialog: React.FC<ConnectPortalDialogProps> = (
   props
 ) => {
-  const [email, setEmail] = useState("");
+  const [email, setEmail] = React.useState("");
 
   function handleClose() {
     props.onClose?.();
