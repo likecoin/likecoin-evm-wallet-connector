@@ -9,7 +9,7 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
-    "@likecoin/evm-wallet-connector": "^0.1.0-alpha.6",
+    "@likecoin/evm-wallet-connector": "^0.1.0-alpha.8",
     "core-js": "^3.25.3",
     "nuxt": "^2.15.8",
     "vue": "^2.7.10",
@@ -18,6 +18,8 @@
     "vuetify": "^2.6.10"
   },
   "devDependencies": {
+    "@nuxt/postcss8": "^1.1.3",
+    "@nuxtjs/tailwindcss": "6.12",
     "@nuxtjs/vuetify": "^1.12.3"
   }
 }
