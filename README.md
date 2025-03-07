@@ -15,10 +15,9 @@ $ npm run dev
 ## Usage
 
 ### Setup
+#### JS
 ```js
 import { LikeCoinEVMWalletConnector } from "@likecoin/evm-wallet-connector";
-
-import "@likecoin/evm-wallet-connector/style.css";
 
 const connector = new LikeCoinEVMWalletConnector({
   magicLinkAPIKey: "API_KEY",
@@ -41,6 +40,36 @@ const connector = new LikeCoinEVMWalletConnector({
   },
 });
 ```
+
+#### CSS
+Please include the `@likecoin/evm-wallet-connector/style.css` CSS file to your HTML file.
+
+##### Nuxt
+Please include the CSS file in the Nuxt config file.
+
+```js
+// Nuxt 2
+// nuxt.config.js
+export default {
+  ...
+  css: ['@likecoin/evm-wallet-connector/style.css'],
+  ...
+}
+```
+[Nuxt 2 Example](/examples/nuxt2/)
+
+
+```js
+// Nuxt 3
+// nuxt.config.ts
+export default defineNuxtConfig({
+  ...
+  css: ['@likecoin/evm-wallet-connector/style.css'],
+  ...
+})
+```
+
+[Nuxt 3 Example](/examples/nuxt3/)
 
 ### Connect
 ```js
