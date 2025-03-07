@@ -230,7 +230,7 @@ export class LikeCoinEVMWalletConnectorUI extends React.Component<
     return (
       <>
         <PlainDialog isOpen={this.state.isConnecting}>
-          <div className="lk:text-center lk:py-10">
+          <div className="lk-text-center lk-py-10">
             <p>Connecting...</p>
           </div>
         </PlainDialog>

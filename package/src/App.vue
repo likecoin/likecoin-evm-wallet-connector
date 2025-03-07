@@ -1,36 +1,36 @@
 <template>
-  <div class="min-h-full">
-    <nav as="nav" class="bg-gray-800">
-      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-4">
-        <div class="flex items-center justify-between space-x-10">
-          <div class="flex items-center space-x-4">
+  <div class="lk-min-h-full">
+    <nav as="nav" class="lk-bg-gray-800">
+      <div class="lk-mx-auto lk-max-w-7xl lk-px-4 lk-sm:px-6 lg:lk-px-8 lk-py-4">
+        <div class="lk-flex lk-items-center lk-justify-between lk-space-x-10">
+          <div class="lk-flex lk-items-center lk-space-x-4">
             <img
-              class="shrink-0 size-8"
+              class="lk-shrink-0 lk-size-8"
               src="./assets/logo.svg"
               alt="LikeCoin"
             />
-            <h1 class="text-white">LikeCoin EVM Wallet Connector Demo</h1>
+            <h1 class="lk-text-white">LikeCoin EVM Wallet Connector Demo</h1>
           </div>
 
           <div>
             <button
               type="button"
-              class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              class="lk-rounded-md lk-bg-indigo-600 lk-px-3 lk-py-2 lk-text-sm lk-font-semibold lk-text-white lk-shadow-xs hover:lk-bg-indigo-500 lk-focus-visible:outline-2 focus-visible:lk-outline-offset-2 focus-visible:lk-outline-indigo-600"
               v-text="connectionButtonTitle"
               @click="handleClickConnectionButton"
             />
           </div>
         </div>
 
-        <div class="flex items-baseline space-x-4 mt-4">
+        <div class="lk-flex lk-items-baseline lk-space-x-4 lk-mt-4">
           <button
             v-for="item in menuItems"
             :key="item.id"
             :class="[
               item.current
-                ? 'bg-gray-900 text-white'
-                : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-              'rounded-md px-3 py-2 text-sm font-medium',
+                ? 'lk-bg-gray-900 lk-text-white'
+                : 'lk-text-gray-300 hover:lk-bg-gray-700 hover:lk-text-white',
+              'lk-rounded-md lk-px-3 lk-py-2 lk-text-sm lk-font-medium',
             ]"
             v-text="item.name"
             @click="currentMenuItemId = item.id"
@@ -39,27 +39,27 @@
       </div>
     </nav>
 
-    <header class="bg-white shadow-sm">
+    <header class="lk-bg-white lk-shadow-sm">
       <div
-        class="flex justify-between items-center max-w-7xl mx-auto px-4 py-6 sm:px-6 lg:px-8 gap-4"
+        class="lk-flex lk-justify-between lk-items-center lk-max-w-7xl lk-mx-auto lk-px-4 lk-py-6 sm:lk-px-6 lg:lk-px-8 lk-gap-4"
       >
         <h1
-          class="text-3xl font-bold tracking-tight text-gray-900"
+          class="lk-text-3xl lk-font-bold lk-tracking-tight lk-text-gray-900"
           v-text="title"
         />
       </div>
     </header>
 
     <main>
-      <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+      <div class="lk-mx-auto lk-max-w-7xl lk-px-4 lk-py-6 sm:lk-px-6 lg:lk-px-8">
         <div v-if="walletAddress">
-          <div class="text-center text-gray-500 mt-4">
-            <span class="text-sm">Connected wallet address through {{ currentProviderId }}</span><br />
+          <div class="lk-text-center lk-text-gray-500 lk-mt-4">
+            <span class="lk-text-sm">Connected wallet address through {{ currentProviderId }}</span><br />
             <code v-text="walletAddress" />
           </div>
         </div>
 
-        <div v-if="!walletAddress" class="mt-10 text-center text-gray-500">
+        <div v-if="!walletAddress" class="lk-mt-10 lk-text-center lk-text-gray-500">
           Please connect to proceed
         </div>
 
@@ -70,32 +70,32 @@
           "
           @submit="handleSubmit"
         >
-          <div class="space-y-12">
-            <div class="border-b border-gray-900/10 pb-12">
+          <div class="lk-space-y-12">
+            <div class="lk-border-b lk-border-gray-900/10 lk-pb-12">
               <div
-                class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6"
+                class="lk-mt-10 lk-grid lk-grid-cols-1 lk-gap-x-6 lk-gap-y-8 sm:lk-grid-cols-6"
               >
-                <div class="col-span-full">
-                  <label class="block text-sm/6 font-medium text-gray-900"
+                <div class="lk-col-span-full">
+                  <label class="lk-block lk-text-sm/6 lk-font-medium lk-text-gray-900"
                     >Message</label
                   >
-                  <div class="mt-2">
+                  <div class="lk-mt-2">
                     <textarea
                       rows="3"
-                      class="block w-full rounded-md bg-white px-3 py-1.5 text-base font-mono text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
+                      class="lk-block lk-w-full lk-rounded-md lk-bg-white lk-px-3 lk-py-1.5 lk-text-base lk-font-mono lk-text-gray-900 lk-outline-1 -lk-outline-offset-1 lk-outline-gray-300 placeholder:lk-text-gray-400 focus:lk-outline-2 focus:-lk-outline-offset-2 focus:lk-outline-indigo-600 sm:lk-text-sm/6"
                       v-model="message"
                     />
                   </div>
                 </div>
               </div>
-              <div class="mt-4 text-xs font-mono break-all" v-text="result" />
+              <div class="lk-mt-4 lk-text-xs lk-font-mono lk-break-all" v-text="result" />
             </div>
           </div>
 
-          <div class="mt-6 flex items-center justify-end gap-x-6">
+          <div class="lk-mt-6 lk-flex lk-items-center lk-justify-end lk-gap-x-6">
             <button
               type="submit"
-              class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              class="lk-rounded-md lk-bg-indigo-600 lk-px-3 lk-py-2 lk-text-sm lk-font-semibold lk-text-white lk-shadow-xs hover:lk-bg-indigo-500 focus-visible:lk-outline-2 focus-visible:lk-outline-offset-2 focus-visible:lk-outline-indigo-600"
             >
               Submit
             </button>

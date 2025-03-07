@@ -9,7 +9,7 @@ npm i @likecoin/evm-wallet-connector
 ## Development
 Run development server
 ```
-$ npm run dev
+$ cd package && npm run dev
 ```
 
 ## Usage

@@ -1,6 +1,6 @@
 <template>
   <v-row>
-    <v-col class="d-flex flex-column justify-center align-center">
+    <v-col class="flex flex-col justify-center align-center">
       <v-btn color="primary" @click="handleClickConnectionButton">{{ connectButtonTitle }}</v-btn>
       <div v-text="walletAddress" />
     </v-col>
