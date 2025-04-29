@@ -26,6 +26,8 @@ export interface LikeCoinEVMWalletConnectorUIProps {
   magicLinkAPIKey?: string;
   rpcURL?: string;
   chainId?: number;
+  logoURL?: string;
+  logoSize?: number;
   onSelectConnectProvider?: (providerId: string) => void;
   onConnect?: (payload: { walletAddress: string; providerId: string }) => void;
   onDisconnect?: () => void;
@@ -237,6 +239,8 @@ export class LikeCoinEVMWalletConnectorUI extends React.Component<
         <ConnectPortalDialog
           providers={this._providersToConnect}
           isOpen={this.state.isConnectPortalDialogOpen}
+          logoURL={this.props.logoURL}
+          logoSize={this.props.logoSize}
           onConnect={this.connect}
           onClose={this.connectPortalDialogClose}
         />
@@ -249,6 +253,8 @@ export interface LikeCoinEVMWalletConnectorOptions {
   magicLinkAPIKey?: string;
   rpcURL?: string;
   chainId?: number;
+  logoURL?: string;
+  logoSize?: number;
   onSelectConnectProvider?: (providerId: string) => void;
   onConnect?: (payload: { walletAddress: string; providerId: string }) => void;
   onDisconnect?: () => void;
@@ -284,6 +290,8 @@ export class LikeCoinEVMWalletConnector {
           magicLinkAPIKey={options.magicLinkAPIKey}
           rpcURL={options.rpcURL}
           chainId={options.chainId}
+          logoURL={options.logoURL}
+          logoSize={options.logoSize}
           onConnect={options.onConnect}
           onSelectConnectProvider={options.onSelectConnectProvider}
           onDisconnect={options.onDisconnect}
