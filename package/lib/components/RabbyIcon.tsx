@@ -22,15 +22,15 @@ export function RabbyIcon(props: React.SVGProps<SVGSVGElement>) {
       />
       <path
         fill="url(#likecoin-evm-wallet-connector-rabby-icon-path-2)"
-        fill-rule="evenodd"
+        fillRule="evenodd"
         d="M64.146 38.654c.453-.178.38-.849.256-1.375-.286-1.21-5.211-6.09-9.836-8.277-6.303-2.978-10.944-2.825-11.63-1.453 1.283 2.64 7.235 5.12 13.453 7.71 2.652 1.104 5.352 2.23 7.758 3.393l-.001.002Z"
-        clip-rule="evenodd"
+        clipRule="evenodd"
       />
       <path
         fill="url(#likecoin-evm-wallet-connector-rabby-icon-path-3)"
-        fill-rule="evenodd"
+        fillRule="evenodd"
         d="M56.159 65.224a37.089 37.089 0 0 0-4.352-1.344c1.746-3.134 2.113-7.774.464-10.706-2.312-4.116-5.218-6.307-11.965-6.307-3.713 0-13.705 1.254-13.883 9.625-.019.877 0 1.682.063 2.422l18.25.133c-2.461 3.916-4.766 6.82-6.782 9.028 2.422.624 4.419 1.146 6.255 1.625 1.74.456 3.334.874 5.002 1.3a76.127 76.127 0 0 0 6.948-5.776Z"
-        clip-rule="evenodd"
+        clipRule="evenodd"
       />
       <path
         fill="url(#likecoin-evm-wallet-connector-rabby-icon-path-4)"
@@ -45,8 +45,8 @@ export function RabbyIcon(props: React.SVGProps<SVGSVGElement>) {
           y2="65.516"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#8697FF" />
-          <stop offset="1" stop-color="#ABB7FF" />
+          <stop stopColor="#8697FF" />
+          <stop offset="1" stopColor="#ABB7FF" />
         </linearGradient>
         <linearGradient
           id="likecoin-evm-wallet-connector-rabby-icon-path-1"
@@ -56,8 +56,8 @@ export function RabbyIcon(props: React.SVGProps<SVGSVGElement>) {
           y2="61.819"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#fff" />
-          <stop offset="1" stop-color="#fff" />
+          <stop stopColor="#fff" />
+          <stop offset="1" stopColor="#fff" />
         </linearGradient>
         <linearGradient
           id="likecoin-evm-wallet-connector-rabby-icon-path-2"
@@ -67,8 +67,8 @@ export function RabbyIcon(props: React.SVGProps<SVGSVGElement>) {
           y2="17.524"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#8697FF" />
-          <stop offset="1" stop-color="#8697FF" stop-opacity="0" />
+          <stop stopColor="#8697FF" />
+          <stop offset="1" stopColor="#8697FF" stopOpacity="0" />
         </linearGradient>
         <linearGradient
           id="likecoin-evm-wallet-connector-rabby-icon-path-3"
@@ -78,8 +78,8 @@ export function RabbyIcon(props: React.SVGProps<SVGSVGElement>) {
           y2="49.127"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#8697FF" />
-          <stop offset="1" stop-color="#8697FF" stop-opacity="0" />
+          <stop stopColor="#8697FF" />
+          <stop offset="1" stopColor="#8697FF" stopOpacity="0" />
         </linearGradient>
         <linearGradient
           id="likecoin-evm-wallet-connector-rabby-icon-path-4"
@@ -89,8 +89,8 @@ export function RabbyIcon(props: React.SVGProps<SVGSVGElement>) {
           y2="75.02"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#fff" />
-          <stop offset=".984" stop-color="#D1D8FF" />
+          <stop stopColor="#fff" />
+          <stop offset=".984" stopColor="#D1D8FF" />
         </linearGradient>
       </defs>
     </svg>

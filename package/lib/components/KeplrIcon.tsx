@@ -19,8 +19,8 @@ export function KeplrIcon(props: React.SVGProps<SVGSVGElement>) {
           y2="100.279"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#1FD1FF" />
-          <stop offset="1" stop-color="#1BB8FF" />
+          <stop stopColor="#1FD1FF" />
+          <stop offset="1" stopColor="#1BB8FF" />
         </linearGradient>
         <radialGradient
           id="likecoin-evm-wallet-connector-keplr-icon-bg-fill-2"
@@ -30,8 +30,8 @@ export function KeplrIcon(props: React.SVGProps<SVGSVGElement>) {
           gradientTransform="rotate(-45.156 118.416 42.5) scale(160.368 162.768)"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#232DE3" />
-          <stop offset="1" stop-color="#232DE3" stop-opacity="0" />
+          <stop stopColor="#232DE3" />
+          <stop offset="1" stopColor="#232DE3" stopOpacity="0" />
         </radialGradient>
         <radialGradient
           id="likecoin-evm-wallet-connector-keplr-icon-bg-fill-3"
@@ -41,8 +41,8 @@ export function KeplrIcon(props: React.SVGProps<SVGSVGElement>) {
           gradientTransform="matrix(-75.04053 -66.50709 101.40455 -114.41565 94.614 99.708)"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#8B4DFF" />
-          <stop offset="1" stop-color="#8B4DFF" stop-opacity="0" />
+          <stop stopColor="#8B4DFF" />
+          <stop offset="1" stopColor="#8B4DFF" stopOpacity="0" />
         </radialGradient>
         <radialGradient
           id="likecoin-evm-wallet-connector-keplr-icon-bg-fill-4"
@@ -52,8 +52,8 @@ export function KeplrIcon(props: React.SVGProps<SVGSVGElement>) {
           gradientTransform="matrix(0 78.8417 -191.291 0 49.167 1.02)"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#24D5FF" />
-          <stop offset="1" stop-color="#1BB8FF" stop-opacity="0" />
+          <stop stopColor="#24D5FF" />
+          <stop offset="1" stopColor="#1BB8FF" stopOpacity="0" />
         </radialGradient>
       </defs>
       <circle
