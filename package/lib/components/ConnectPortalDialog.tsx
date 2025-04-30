@@ -3,12 +3,8 @@ import { Description, DialogTitle, Field, Input } from "@headlessui/react";
 import { clsx } from "clsx/lite";
 
 import { PlainDialog } from "./PlainDialog";
-import { CosmostationIcon } from "./CosmostationIcon";
-import { KeplrIcon } from "./KeplrIcon";
 import { LikeCoinLogo } from "./LikeCoinLogo";
-import { MailIcon } from "./MailIcon";
-import { MetamaskIcon } from "./MetamaskIcon";
-import { RabbyIcon } from "./RabbyIcon";
+import { ConnectProviderIcon } from "./ConnectProviderIcon";
 
 export interface ConnectPortalDialogProps {
   providers?: { id: string; name: string }[];
@@ -36,6 +32,9 @@ export const ConnectPortalDialog: React.FC<ConnectPortalDialogProps> = (
     props.onConnect?.(id, { email });
   }
 
+  const [preferredProvider, ...otherProviders] = props.providers || [];
+  const isPreferredProviderEmail = preferredProvider?.id === "email";
+
   const logoStyle = {
     maxWidth: `${
       (Number.isNaN(props.logoSize) ? undefined : props.logoSize) || 100
@@ -57,33 +56,42 @@ export const ConnectPortalDialog: React.FC<ConnectPortalDialogProps> = (
         EVM Connect Portal
       </DialogTitle>
 
-      <div>
-        <Field className="lk-mt-6">
-          <Input
-            className="lk-block lk-w-full lk-rounded-lg lk-border-none lk-bg-black/5 lk-py-1.5 lk-px-3 lk-text-sm/6 lk-text-black lk-focus:outline-none lk-data-[focus]:outline-2 lk-data-[focus]:-outline-offset-2 lk-data-[focus]:outline-black/25"
-            value={email}
-            type="email"
-            placeholder="john@example.com"
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </Field>
-
-        <button
-          className={clsx(
-            "lk-flex lk-items-center lk-mt-2 lk-w-full lk-bg-likecoin-500 lk-rounded-lg lk-min-h-[44px] lk-px-3 lk-py-2 lk-text-sm lk-font-medium",
-            !!email && "lk-hover:bg-likecoin-700 lk-hover:text-white",
-            email ? "lk-text-white" : "lk-text-likecoin-300"
+      {preferredProvider && (
+        <div className="lk-mt-6">
+          {isPreferredProviderEmail && (
+            <Field className="lk-mb-2">
+              <Input
+                className="lk-block lk-w-full lk-rounded-lg lk-border-none lk-bg-black/5 lk-py-1.5 lk-px-3 lk-text-sm/6 lk-text-black lk-focus:outline-none lk-data-[focus]:outline-2 lk-data-[focus]:-outline-offset-2 lk-data-[focus]:outline-black/25"
+                value={email}
+                type="email"
+                placeholder="john@example.com"
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </Field>
           )}
-          disabled={!email}
-          onClick={() => connectWith("email")}
-        >
-          <MailIcon width="20" height="20" />
 
-          <span className="lk-grow lk-mr-[20px]">Continue with Email</span>
-        </button>
-      </div>
+          <button
+            className={clsx(
+              "lk-flex lk-items-center lk-w-full lk-bg-likecoin-500 lk-rounded-lg lk-min-h-[44px] lk-px-3 lk-py-2 lk-text-sm lk-font-medium",
+              (!isPreferredProviderEmail || !!email) &&
+                "lk-hover:bg-likecoin-700 lk-hover:text-white",
+              !isPreferredProviderEmail || email
+                ? "lk-text-white"
+                : "lk-text-likecoin-300"
+            )}
+            disabled={isPreferredProviderEmail && !email}
+            onClick={() => connectWith(preferredProvider.id)}
+          >
+            <ConnectProviderIcon providerId={preferredProvider.id} />
 
-      {props.providers?.length && (
+            <span className="lk-grow lk-mr-[20px] first:lk-mr-0">
+              {preferredProvider.name}
+            </span>
+          </button>
+        </div>
+      )}
+
+      {otherProviders?.length && (
         <div className="lk-mt-4">
           <Description
             as="div"
@@ -94,16 +102,32 @@ export const ConnectPortalDialog: React.FC<ConnectPortalDialogProps> = (
             <hr className="lk-grow lk-border-gray-600" />
           </Description>
           <ul className="lk-flex lk-items-center lk-flex-col lk-gap-2 lk-mt-4 lk-w-full">
-            {props.providers?.map(({ id, name }) => (
+            {otherProviders.map(({ id, name }) => (
               <li key={id} className="lk-w-full">
+                {id === "email" && (
+                  <Field className="lk-mb-2">
+                    <Input
+                      className="lk-block lk-w-full lk-rounded-lg lk-border-none lk-bg-black/5 lk-py-1.5 lk-px-3 lk-text-sm/6 lk-text-black lk-focus:outline-none lk-data-[focus]:outline-2 lk-data-[focus]:-outline-offset-2 lk-data-[focus]:outline-black/25"
+                      value={email}
+                      type="email"
+                      placeholder="john@example.com"
+                      onChange={(e) => setEmail(e.target.value)}
+                    />
+                  </Field>
+                )}
+
                 <button
-                  className="lk-flex lk-items-center lk-w-full lk-text-gray-900 lk-bg-gray-100 hover:lk-bg-gray-200 lk-rounded-lg lk-min-h-[44px] lk-px-3 lk-py-2 lk-text-sm lk-font-medium lk-border lk-border-gray-300"
+                  className={clsx(
+                    "lk-flex lk-items-center lk-w-full lk-bg-gray-100 lk-rounded-lg lk-min-h-[44px] lk-px-3 lk-py-2 lk-text-sm lk-font-medium lk-border lk-border-gray-300",
+                    id === "email" && !email
+                      ? "lk-text-gray-400 lk-cursor-not-allowed"
+                      : "lk-text-gray-900 hover:lk-bg-gray-200"
+                  )}
+                  disabled={id === "email" && !email}
                   onClick={() => connectWith(id)}
                 >
-                  {id === "io.cosmostation" && <CosmostationIcon />}
-                  {id === "io.metamask" && <MetamaskIcon />}
-                  {id === "app.keplr" && <KeplrIcon />}
-                  {id === "io.rabby" && <RabbyIcon />}
+                  <ConnectProviderIcon providerId={id} />
+
                   <span className="lk-grow lk-mr-[20px] first:lk-mr-0">
                     {name}
                   </span>

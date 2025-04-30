@@ -41,6 +41,7 @@ export interface LikeCoinEVMWalletConnectorUIState {
   providerMap: Record<string, LikeCoinEVMWalletConnectionProvider>;
   provider?: any;
   providerId?: string;
+  preferredProviderId?: string;
   magic?: Magic;
 }
 
@@ -52,6 +53,7 @@ export class LikeCoinEVMWalletConnectorUI extends React.Component<
     isConnecting: false,
     isConnectPortalDialogOpen: false,
     providerMap: {},
+    preferredProviderId: "",
   };
 
   componentDidMount(): void {
@@ -95,18 +97,33 @@ export class LikeCoinEVMWalletConnectorUI extends React.Component<
   };
 
   private get _providersToConnect() {
-    return Object.keys(this.state.providerMap).map((key) => ({
-      id: key,
-      name: this.state.providerMap[key].name,
-    }));
+    const providers = [
+      { id: "email", name: "Continue With Email" },
+      ...Object.keys(this.state.providerMap).map((key) => ({
+        id: key,
+        name: this.state.providerMap[key].name,
+      })),
+    ];
+    providers.sort((a, b) => {
+      if (a.id === this.state.preferredProviderId) return -1;
+      if (b.id === this.state.preferredProviderId) return 1;
+      if (a.id === "email") return -1;
+      if (b.id === "email") return 1;
+      return 0;
+    });
+    return providers;
   }
 
-  public toggleConnectionPortalDialog = (value?: boolean) => {
+  public toggleConnectionPortalDialog = (
+    value?: boolean | null,
+    { preferredProviderId = "" } = {}
+  ) => {
     this.setState({
       isConnectPortalDialogOpen:
         typeof value === "boolean"
           ? value
           : !this.state.isConnectPortalDialogOpen,
+      preferredProviderId,
     });
   };
 
@@ -318,8 +335,8 @@ export class LikeCoinEVMWalletConnector {
     return this.ui?.magic;
   }
 
-  public showConnectPortal = () => {
-    this.ui?.toggleConnectionPortalDialog();
+  public showConnectPortal = ({ preferredProviderId = "" } = {}) => {
+    this.ui?.toggleConnectionPortalDialog(null, { preferredProviderId });
   };
 
   public connect = (providerId: string, payload?: { email: string }) => {

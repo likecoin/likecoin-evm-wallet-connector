@@ -76,6 +76,9 @@ export default defineNuxtConfig({
 // Show connect portal
 connector.showConnectPortal();
 
+// Show connect portal with preferred provider (`providerId` is the EIP-6963 RDNS)
+connector.showConnectPortal({ preferredProviderId: 'io.metamask' });
+
 // Connect with specific provider
 connector.connect('email', { email: 'davidng@liker.land' });
 ```
