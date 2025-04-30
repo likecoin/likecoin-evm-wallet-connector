@@ -11,6 +11,7 @@ export interface ConnectPortalDialogProps {
   isOpen?: boolean;
   logoURL?: string;
   logoSize?: number;
+  email?: string;
   onConnect?: (id: string, payload?: { email: string }) => void;
   onClose?: () => void;
 }
@@ -18,7 +19,12 @@ export interface ConnectPortalDialogProps {
 export const ConnectPortalDialog: React.FC<ConnectPortalDialogProps> = (
   props
 ) => {
-  const [email, setEmail] = React.useState("");
+  const [email, setEmail] = React.useState(props.email || "");
+  React.useEffect(() => {
+    if (props.isOpen) {
+      setEmail(props.email || "");
+    }
+  }, [props.email, props.isOpen]);
 
   function handleClose() {
     props.onClose?.();

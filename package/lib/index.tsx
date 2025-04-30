@@ -42,6 +42,7 @@ export interface LikeCoinEVMWalletConnectorUIState {
   provider?: any;
   providerId?: string;
   preferredProviderId?: string;
+  email?: string;
   magic?: Magic;
 }
 
@@ -54,6 +55,7 @@ export class LikeCoinEVMWalletConnectorUI extends React.Component<
     isConnectPortalDialogOpen: false,
     providerMap: {},
     preferredProviderId: "",
+    email: "",
   };
 
   componentDidMount(): void {
@@ -116,7 +118,7 @@ export class LikeCoinEVMWalletConnectorUI extends React.Component<
 
   public toggleConnectionPortalDialog = (
     value?: boolean | null,
-    { preferredProviderId = "" } = {}
+    { preferredProviderId = "", email = "" } = {}
   ) => {
     this.setState({
       isConnectPortalDialogOpen:
@@ -124,6 +126,7 @@ export class LikeCoinEVMWalletConnectorUI extends React.Component<
           ? value
           : !this.state.isConnectPortalDialogOpen,
       preferredProviderId,
+      email,
     });
   };
 
@@ -135,7 +138,8 @@ export class LikeCoinEVMWalletConnectorUI extends React.Component<
     try {
       let walletAddress = "";
       if (providerId === "email") {
-        if (!payload?.email) {
+        const email = payload?.email || this.state.email;
+        if (!email) {
           throw new Error("Missing Email");
         }
 
@@ -155,7 +159,7 @@ export class LikeCoinEVMWalletConnectorUI extends React.Component<
         });
 
         await magic.auth.loginWithEmailOTP({
-          email: payload.email,
+          email,
           showUI: true,
         });
         const userInfo = await magic.user.getInfo();
@@ -256,6 +260,7 @@ export class LikeCoinEVMWalletConnectorUI extends React.Component<
         <ConnectPortalDialog
           providers={this._providersToConnect}
           isOpen={this.state.isConnectPortalDialogOpen}
+          email={this.state.email}
           logoURL={this.props.logoURL}
           logoSize={this.props.logoSize}
           onConnect={this.connect}
@@ -335,8 +340,11 @@ export class LikeCoinEVMWalletConnector {
     return this.ui?.magic;
   }
 
-  public showConnectPortal = ({ preferredProviderId = "" } = {}) => {
-    this.ui?.toggleConnectionPortalDialog(null, { preferredProviderId });
+  public showConnectPortal = ({
+    preferredProviderId = "",
+    email = "",
+  } = {}) => {
+    this.ui?.toggleConnectionPortalDialog(null, { preferredProviderId, email });
   };
 
   public connect = (providerId: string, payload?: { email: string }) => {
