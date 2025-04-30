@@ -116,14 +116,14 @@ export class LikeCoinEVMWalletConnectorUI extends React.Component<
 
   public toggleConnectionPortalDialog = (
     value?: boolean | null,
-    { providerId = "" } = {}
+    { preferredProviderId = "" } = {}
   ) => {
     this.setState({
       isConnectPortalDialogOpen:
         typeof value === "boolean"
           ? value
           : !this.state.isConnectPortalDialogOpen,
-      preferredProviderId: providerId,
+      preferredProviderId,
     });
   };
 
@@ -335,8 +335,8 @@ export class LikeCoinEVMWalletConnector {
     return this.ui?.magic;
   }
 
-  public showConnectPortal = ({ providerId = "" } = {}) => {
-    this.ui?.toggleConnectionPortalDialog(null, { providerId });
+  public showConnectPortal = ({ preferredProviderId = "" } = {}) => {
+    this.ui?.toggleConnectionPortalDialog(null, { preferredProviderId });
   };
 
   public connect = (providerId: string, payload?: { email: string }) => {
