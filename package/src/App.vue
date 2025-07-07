@@ -101,6 +101,17 @@
             </button>
           </div>
         </form>
+
+        <div v-else-if="currentMenuItemId === 'magic'" class="lk-flex lk-flex-col lk-items-center lk-py-6 lk-gap-4 lk-max-w-md lk-mx-auto">
+          <button
+            v-for="item in magicLinkActions"
+            type="button"
+            class="lk-w-full lk-rounded-md lk-bg-gray-600 lk-px-3 lk-py-2 lk-text-sm lk-font-mono lk-text-white lk-shadow-xs hover:lk-bg-gray-500 lk-focus-visible:outline-2 focus-visible:lk-outline-offset-2 focus-visible:lk-outline-gray-600"
+            :key="item.id"
+            v-text="item.name"
+            @click="item.onClick"
+          />
+        </div>
       </div>
     </main>
   </div>
@@ -116,6 +127,15 @@ const MENU_ITEMS = [
   { id: "sign_transaction", name: "Sign Transaction" },
 ];
 
+const MAGIC_WALLET_FUNCTIONS = [
+  "showUI",
+  "showAddress",
+  "showBalances",
+  "showNFTs",
+  "showSendTokensUI",
+  "showOnRamp",
+] as const;
+
 const currentMenuItemId = ref(MENU_ITEMS[0].id);
 const walletAddress = ref<string | undefined>(undefined);
 const message = ref<string>("");
@@ -130,12 +150,34 @@ const title = computed(
 const connectionButtonTitle = computed(() =>
   walletAddress.value ? "Disconnect" : "Connect"
 );
-const menuItems = computed(() =>
-  MENU_ITEMS.map((item) => ({
+const menuItems = computed(() => {
+  const items = [...MENU_ITEMS];
+  if (currentProviderId.value === "email") {
+    items.push({
+      id: "magic",
+      name: "Magic Link UI",
+    });
+  }
+  return items.map((item) => ({
     ...item,
     current: item.id === currentMenuItemId.value,
   }))
-);
+});
+
+const magicLinkActions = computed(() => {
+  const magic = connector.value?.magic
+  if (!magic) return [];
+
+  return MAGIC_WALLET_FUNCTIONS.map((functionName) => ({
+    id: functionName,
+    name: `magic.wallet.${functionName}()`,
+    onClick: () => {
+      if (typeof magic.wallet[functionName] === "function") {
+        magic.wallet[functionName]();
+      }
+    },
+  }))
+})
 
 watch(
   () => currentMenuItemId.value,
