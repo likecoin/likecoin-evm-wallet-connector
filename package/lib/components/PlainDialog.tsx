@@ -19,7 +19,7 @@ export const PlainDialog: React.FC<PlainDialogProps> = (props) => {
         <div className="lk-flex lk-min-h-full lk-items-center lk-justify-center lk-p-4">
           <DialogPanel
             transition
-            className="lk-w-full lk-max-w-md lk-rounded-xl lk-bg-white/90 lk-p-6 lk-backdrop-blur-2xl lk-duration-300 lk-ease-out lk-data-[closed]:transform-[scale(95%)] lk-data-[closed]:opacity-0"
+            className="lk-w-full lk-max-w-[348px] lk-rounded-xl lk-bg-white lk-p-6 lk-shadow-lg lk-backdrop-blur-2xl lk-duration-300 lk-ease-out lk-data-[closed]:transform-[scale(95%)] lk-data-[closed]:opacity-0"
           >
             {props.children}
           </DialogPanel>

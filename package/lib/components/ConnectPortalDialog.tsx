@@ -1,9 +1,9 @@
 import * as React from "react";
-import { Description, DialogTitle, Field, Input } from "@headlessui/react";
+import { Description, Field, Input } from "@headlessui/react";
 import { clsx } from "clsx/lite";
 
 import { PlainDialog } from "./PlainDialog";
-import { LikeCoinLogo } from "./LikeCoinLogo";
+import { BookComLogo } from "./BookComLogo";
 import { ConnectProviderIcon } from "./ConnectProviderIcon";
 
 export interface ConnectPortalDialogProps {
@@ -43,7 +43,7 @@ export const ConnectPortalDialog: React.FC<ConnectPortalDialogProps> = (
 
   const logoStyle = {
     maxWidth: `${
-      (Number.isNaN(props.logoSize) ? undefined : props.logoSize) || 100
+      (Number.isNaN(props.logoSize) ? undefined : props.logoSize) || 44
     }px`,
   };
   return (
@@ -52,15 +52,8 @@ export const ConnectPortalDialog: React.FC<ConnectPortalDialogProps> = (
         (props.logoURL ? (
           <img src={props.logoURL} style={logoStyle} />
         ) : (
-          <LikeCoinLogo className="lk-text-likecoin-500" style={logoStyle} />
+          <BookComLogo className="lk-mx-auto lk-mt-4" style={logoStyle} />
         ))}
-
-      <DialogTitle
-        as="h3"
-        className="lk-mt-[52px] first:lk-mt-0 lk-text-2xl lk-font-bold lk-text-likecoin-500"
-      >
-        EVM Connect Portal
-      </DialogTitle>
 
       {preferredProvider && (
         <div className="lk-mt-6">
@@ -78,12 +71,12 @@ export const ConnectPortalDialog: React.FC<ConnectPortalDialogProps> = (
 
           <button
             className={clsx(
-              "lk-flex lk-items-center lk-w-full lk-bg-likecoin-500 lk-rounded-lg lk-min-h-[44px] lk-px-3 lk-py-2 lk-text-sm lk-font-medium",
+              "lk-flex lk-items-center lk-w-full lk-bg-[#131313] lk-rounded-lg lk-min-h-[32px] lk-px-3 lk-py-2 lk-text-sm lk-font-medium",
               (!isPreferredProviderEmail || !!email) &&
                 "lk-hover:bg-likecoin-700 lk-hover:text-white",
               !isPreferredProviderEmail || email
-                ? "lk-text-white"
-                : "lk-text-likecoin-300"
+                ? "lk-text-[#50e3c2]"
+                : "lk-text-[#50e3c2]/80"
             )}
             disabled={isPreferredProviderEmail && !email}
             onClick={() => connectWith(preferredProvider.id)}
@@ -101,11 +94,11 @@ export const ConnectPortalDialog: React.FC<ConnectPortalDialogProps> = (
         <div className="lk-mt-4">
           <Description
             as="div"
-            className="lk-flex lk-items-center lk-gap-[8px] lk-text-sm/6 lk-text-center lk-text-gray-500"
+            className="lk-flex lk-items-center lk-gap-[8px] lk-text-sm/6 lk-text-center lk-text-[#a1a1a1]"
           >
-            <hr className="lk-grow lk-border-gray-600" />
+            <hr className="lk-grow lk-border-[#e5e5e5]" />
             or
-            <hr className="lk-grow lk-border-gray-600" />
+            <hr className="lk-grow lk-border-[#e5e5e5]" />
           </Description>
           <ul className="lk-flex lk-items-center lk-flex-col lk-gap-2 lk-mt-4 lk-w-full">
             {otherProviders.map(({ id, name }) => (
@@ -124,7 +117,7 @@ export const ConnectPortalDialog: React.FC<ConnectPortalDialogProps> = (
 
                 <button
                   className={clsx(
-                    "lk-flex lk-items-center lk-w-full lk-bg-gray-100 lk-rounded-lg lk-min-h-[44px] lk-px-3 lk-py-2 lk-text-sm lk-font-medium lk-border lk-border-gray-300",
+                    "lk-flex lk-items-center lk-w-full lk-bg-[#f5f5f5] lk-rounded-lg lk-min-h-[32px] lk-px-3 lk-py-2 lk-text-sm lk-font-medium lk-border lk-border-gray-300",
                     id === "email" && !email
                       ? "lk-text-gray-400 lk-cursor-not-allowed"
                       : "lk-text-gray-900 hover:lk-bg-gray-200"
