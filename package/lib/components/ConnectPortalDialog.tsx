@@ -97,7 +97,7 @@ export const ConnectPortalDialog: React.FC<ConnectPortalDialogProps> = (
         </div>
       )}
 
-      {otherProviders?.length && (
+      {!!otherProviders?.length && (
         <div className="lk-mt-4">
           <Description
             as="div"
